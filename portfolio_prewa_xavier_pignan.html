@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prewa Xavier Pignan | Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter & JetBrains Mono -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#0b0f19',
+                        cardBg: '#111827',
+                        cardHover: '#1f2937',
+                        accentBlue: '#3b82f6',
+                        accentViolet: '#8b5cf6',
+                        accentCyan: '#06b6d4',
+                        neonPurple: '#a855f7',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Modern Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0b0f19;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1f2937;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #374151;
+        }
+
+        /* Gradient Glow Effects */
+        .glow-violet {
+            box-shadow: 0 0 25px -5px rgba(139, 92, 246, 0.3);
+        }
+        .glow-cyan {
+            box-shadow: 0 0 25px -5px rgba(6, 182, 212, 0.3);
+        }
+        .glass-header {
+            background: rgba(11, 15, 25, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .glass-card {
+            background: rgba(17, 24, 39, 0.7);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-card:hover {
+            border-color: rgba(139, 92, 246, 0.4);
+        }
+
+        /* Custom subtle grid background */
+        .bg-grid-pattern {
+            background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+    </style>
+</head>
+<body class="bg-darkBg text-slate-200 font-sans antialiased selection:bg-accentViolet selection:text-white bg-grid-pattern min-h-screen flex flex-col justify-between">
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="fixed top-0 left-0 w-full z-50 glass-header border-b border-slate-800 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo / Name -->
+                <a href="#home" class="flex items-center space-x-2 text-xl font-bold font-mono tracking-wider group">
+                    <span class="text-accentCyan">&lt;</span>
+                    <span class="text-white group-hover:text-accentViolet transition-colors">XavierPignan</span>
+                    <span class="text-accentCyan">/&gt;</span>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center space-x-8 text-sm font-medium">
+                    <a href="#home" class="hover:text-accentCyan transition-colors py-2">Accueil</a>
+                    <a href="#about" class="hover:text-accentCyan transition-colors py-2">À propos</a>
+                    <a href="#skills" class="hover:text-accentCyan transition-colors py-2">Compétences</a>
+                    <a href="#projects" class="hover:text-accentCyan transition-colors py-2">Projets</a>
+                    <a href="#contact" class="hover:text-accentCyan transition-colors py-2">Contact</a>
+                    <a href="https://github.com/swagma23" target="_blank" rel="noopener noreferrer" class="bg-slate-800 hover:bg-slate-700 text-white px-4 py-2 rounded-lg border border-slate-700 flex items-center space-x-2 transition-all">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                </nav>
+
+                <!-- Mobile menu button -->
+                <button id="mobile-menu-btn" class="md:hidden text-slate-300 hover:text-white focus:outline-none p-2">
+                    <i class="fas fa-bars text-2xl" id="menu-icon"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Drawer -->
+        <div id="mobile-menu" class="hidden md:hidden bg-cardBg border-b border-slate-800 px-4 pt-2 pb-6 space-y-3">
+            <a href="#home" class="mobile-link block px-3 py-2 rounded-md text-base font-medium hover:bg-slate-800 hover:text-accentCyan">Accueil</a>
+            <a href="#about" class="mobile-link block px-3 py-2 rounded-md text-base font-medium hover:bg-slate-800 hover:text-accentCyan">À propos</a>
+            <a href="#skills" class="mobile-link block px-3 py-2 rounded-md text-base font-medium hover:bg-slate-800 hover:text-accentCyan">Compétences</a>
+            <a href="#projects" class="mobile-link block px-3 py-2 rounded-md text-base font-medium hover:bg-slate-800 hover:text-accentCyan">Projets</a>
+            <a href="#contact" class="mobile-link block px-3 py-2 rounded-md text-base font-medium hover:bg-slate-800 hover:text-accentCyan">Contact</a>
+            <a href="https://github.com/swagma23" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-2 px-3 py-2 rounded-md text-base font-medium bg-slate-800 text-white w-full">
+                <i class="fab fa-github"></i>
+                <span>Mon Profil GitHub</span>
+            </a>
+        </div>
+    </header>
+
+    <main class="flex-grow pt-20">
+
+        <!-- SECTION ACCUEIL (HERO) -->
+        <section id="home" class="min-h-[90vh] flex items-center justify-center relative overflow-hidden py-12">
+            <!-- Background Glows -->
+            <div class="absolute top-1/4 left-1/4 w-72 h-72 bg-accentViolet/20 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-accentBlue/20 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-800/80 border border-slate-700/80 text-accentCyan text-xs font-mono mb-6">
+                    <span class="flex h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    Disponible pour opportunités & projets
+                </div>
+
+                <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-tight mb-6">
+                    Bonjour, je suis <br class="hidden sm:inline" />
+                    <span class="bg-gradient-to-r from-accentCyan via-accentBlue to-accentViolet bg-clip-text text-transparent">
+                        Prewa Xavier Pignan
+                    </span>
+                </h1>
+
+                <p class="text-lg sm:text-2xl text-slate-400 font-light max-w-3xl mx-auto mb-10 leading-relaxed">
+                    Étudiant en <strong class="text-slate-200">Informatique & Mathématiques Appliquées</strong> | Développeur GameDev & Passionné de <strong class="text-slate-200">Cybersécurité</strong>.
+                </p>
+
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <a href="#projects" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-accentBlue to-accentViolet hover:from-blue-600 hover:to-purple-600 text-white font-semibold transition-all shadow-lg hover:shadow-accentViolet/20 flex items-center justify-center gap-2 group">
+                        <span>Voir mes projets</span>
+                        <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                    <a href="#contact" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700 text-slate-200 font-semibold transition-all flex items-center justify-center gap-2">
+                        <i class="far fa-paper-plane"></i>
+                        <span>Me contacter</span>
+                    </a>
+                </div>
+
+                <!-- Quick info badges -->
+                <div class="mt-16 grid grid-cols-2 sm:grid-cols-4 gap-4 text-left max-w-3xl mx-auto">
+                    <div class="glass-card p-4 rounded-xl">
+                        <div class="text-accentCyan font-mono text-xl font-bold">C++ & Java</div>
+                        <div class="text-slate-400 text-xs mt-1">Développement 2D</div>
+                    </div>
+                    <div class="glass-card p-4 rounded-xl">
+                        <div class="text-accentViolet font-mono text-xl font-bold">Linux Admin</div>
+                        <div class="text-slate-400 text-xs mt-1">Services Mail & Sec</div>
+                    </div>
+                    <div class="glass-card p-4 rounded-xl">
+                        <div class="text-accentBlue font-mono text-xl font-bold">Maths App.</div>
+                        <div class="text-slate-400 text-xs mt-1">Algorithmes & Logique</div>
+                    </div>
+                    <div class="glass-card p-4 rounded-xl">
+                        <div class="text-emerald-400 font-mono text-xl font-bold">CTF Player</div>
+                        <div class="text-slate-400 text-xs mt-1">Analyse & Pentest</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION À PROPOS -->
+        <section id="about" class="py-20 relative border-t border-slate-800/60">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-white tracking-tight sm:text-4xl">À Propos de Moi</h2>
+                    <div class="w-16 h-1 bg-accentViolet mx-auto mt-2 rounded-full"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                    <!-- Bio Text -->
+                    <div class="md:col-span-7 space-y-5 text-slate-300 leading-relaxed">
+                        <p class="text-lg font-medium text-white">
+                            Passionné par la résolution de problèmes complexes et la création d'expériences interactives.
+                        </p>
+                        <p>
+                            Mon parcours à la croisée de l'<strong>Informatique et des Mathématiques Appliquées</strong> me permet d'aborder le développement logiciel avec une rigueur logique approfondie. Je consacre une grande partie de mon temps libre à l'ingénierie logicielle et à la sécurité informatique.
+                        </p>
+                        <p>
+                            Côté développement, j'affectionne la conception de <strong>moteurs de jeux vidéo 2D</strong> en C++ (SFML) et Java (Swing), où je gère l'architecture, la physique basique, le rendering et les collisions. 
+                        </p>
+                        <p>
+                            Côté sécurité, je développe mes compétences en administration système <strong>Linux (Ubuntu)</strong>, configuration de services réseau sécurisés et résolution de challenges de <strong>Cybersécurité / CTF</strong> (analyse de vulnérabilités, web security).
+                        </p>
+
+                        <!-- Highlights list -->
+                        <div class="pt-4 grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm font-mono">
+                            <div class="flex items-center space-x-2 text-slate-300">
+                                <i class="fas fa-check text-accentCyan"></i>
+                                <span>Rigueur Mathématique</span>
+                            </div>
+                            <div class="flex items-center space-x-2 text-slate-300">
+                                <i class="fas fa-check text-accentCyan"></i>
+                                <span>Architecture GameDev 2D</span>
+                            </div>
+                            <div class="flex items-center space-x-2 text-slate-300">
+                                <i class="fas fa-check text-accentCyan"></i>
+                                <span>Admin Système & Réseau</span>
+                            </div>
+                            <div class="flex items-center space-x-2 text-slate-300">
+                                <i class="fas fa-check text-accentCyan"></i>
+                                <span>Esprit d'Analyse CTF</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Code Window / Terminal Graphic -->
+                    <div class="md:col-span-5">
+                        <div class="bg-cardBg rounded-xl border border-slate-700/70 shadow-2xl overflow-hidden font-mono text-sm">
+                            <!-- Terminal Header -->
+                            <div class="bg-slate-800 px-4 py-3 flex items-center justify-between border-b border-slate-700">
+                                <div class="flex items-center space-x-2">
+                                    <span class="w-3 h-3 bg-red-500 rounded-full inline-block"></span>
+                                    <span class="w-3 h-3 bg-yellow-500 rounded-full inline-block"></span>
+                                    <span class="w-3 h-3 bg-green-500 rounded-full inline-block"></span>
+                                </div>
+                                <span class="text-xs text-slate-400">xavier@dev-box:~</span>
+                            </div>
+                            <!-- Terminal Body -->
+                            <div class="p-4 space-y-3 text-xs sm:text-sm">
+                                <div>
+                                    <span class="text-accentCyan">xavier@dev-box</span>:<span class="text-accentViolet">~</span>$ cat profile.json
+                                </div>
+                                <div class="text-slate-300 pl-2">
+                                    {<br/>
+                                    &nbsp;&nbsp;<span class="text-accentCyan">"nom"</span>: <span class="text-emerald-400">"Prewa Xavier Pignan"</span>,<br/>
+                                    &nbsp;&nbsp;<span class="text-accentCyan">"statut"</span>: <span class="text-emerald-400">"Étudiant Info & Maths"</span>,<br/>
+                                    &nbsp;&nbsp;<span class="text-accentCyan">"passions"</span>: [<br/>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-amber-300">"Développement 2D"</span>,<br/>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-amber-300">"Cybersécurité & Pentest"</span>,<br/>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-amber-300">"Administration Linux"</span><br/>
+                                    &nbsp;&nbsp;],<br/>
+                                    &nbsp;&nbsp;<span class="text-accentCyan">"os_préféré"</span>: <span class="text-emerald-400">"Ubuntu / Linux"</span><br/>
+                                    }
+                                </div>
+                                <div class="pt-2">
+                                    <span class="text-accentCyan">xavier@dev-box</span>:<span class="text-accentViolet">~</span>$ <span class="animate-pulse">_</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION COMPÉTENCES -->
+        <section id="skills" class="py-20 bg-slate-900/50 border-t border-slate-800/60">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl font-bold text-white tracking-tight sm:text-4xl">Compétences Techniques</h2>
+                    <p class="text-slate-400 mt-2">Mes outils, langages et environnements de prédilection</p>
+                    <div class="w-16 h-1 bg-accentBlue mx-auto mt-2 rounded-full"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    
+                    <!-- Langages -->
+                    <div class="glass-card rounded-2xl p-6 transition-all">
+                        <div class="w-12 h-12 bg-accentBlue/10 rounded-xl flex items-center justify-center text-accentBlue mb-6 text-2xl">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-4">Langages</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between text-sm font-medium mb-1">
+                                    <span class="text-slate-200">C++</span>
+                                    <span class="text-accentBlue font-mono">GameDev / SFML</span>
+                                </div>
+                                <div class="w-full bg-slate-800 rounded-full h-2">
+                                    <div class="bg-accentBlue h-2 rounded-full" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm font-medium mb-1">
+                                    <span class="text-slate-200">Java</span>
+                                    <span class="text-accentBlue font-mono">Swing / POO</span>
+                                </div>
+                                <div class="w-full bg-slate-800 rounded-full h-2">
+                                    <div class="bg-accentBlue h-2 rounded-full" style="width: 80%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm font-medium mb-1">
+                                    <span class="text-slate-200">JavaScript</span>
+                                    <span class="text-accentBlue font-mono">Web / DOM</span>
+                                </div>
+                                <div class="w-full bg-slate-800 rounded-full h-2">
+                                    <div class="bg-accentBlue h-2 rounded-full" style="width: 75%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm font-medium mb-1">
+                                    <span class="text-slate-200">PHP & SQL</span>
+                                    <span class="text-accentBlue font-mono">Backend & DB</span>
+                                </div>
+                                <div class="w-full bg-slate-800 rounded-full h-2">
+                                    <div class="bg-accentBlue h-2 rounded-full" style="width: 70%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm font-medium mb-1">
+                                    <span class="text-slate-200">HTML5 / CSS3</span>
+                                    <span class="text-accentBlue font-mono">Styling</span>
+                                </div>
+                                <div class="w-full bg-slate-800 rounded-full h-2">
+                                    <div class="bg-accentBlue h-2 rounded-full" style="width: 85%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cybersécurité & Réseaux -->
+                    <div class="glass-card rounded-2xl p-6 transition-all">
+                        <div class="w-12 h-12 bg-accentViolet/10 rounded-xl flex items-center justify-center text-accentViolet mb-6 text-2xl">
+                            <i class="fas fa-shield-halved"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-4">Cybersécurité & Réseaux</h3>
+                        <div class="space-y-3">
+                            <div class="p-3 bg-slate-800/60 rounded-xl border border-slate-700/50">
+                                <div class="font-semibold text-slate-200 text-sm">Pentesting & CTF</div>
+                                <div class="text-xs text-slate-400 mt-0.5">Injection SQL, Vulnerability Analysis, Buffer Overflow</div>
+                            </div>
+                            <div class="p-3 bg-slate-800/60 rounded-xl border border-slate-700/50">
+                                <div class="font-semibold text-slate-200 text-sm">Linux Administration</div>
+                                <div class="text-xs text-slate-400 mt-0.5">Ubuntu Server, Postfix, Dovecot, System Hardening</div>
+                            </div>
+                            <div class="p-3 bg-slate-800/60 rounded-xl border border-slate-700/50">
+                                <div class="font-semibold text-slate-200 text-sm">Outils d'Analyse</div>
+                                <div class="text-xs text-slate-400 mt-0.5">Nmap, Wireshark, Burp Suite, Metasploit</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Outils & Frameworks -->
+                    <div class="glass-card rounded-2xl p-6 transition-all">
+                        <div class="w-12 h-12 bg-accentCyan/10 rounded-xl flex items-center justify-center text-accentCyan mb-6 text-2xl">
+                            <i class="fas fa-cubes"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-4">Outils & Moteurs 2D</h3>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-3 py-1.5 bg-slate-800 border border-slate-700 rounded-lg text-xs font-mono text-slate-300">SFML 3</span>
+                            <span class="px-3 py-1.5 bg-slate-800 border border-slate-700 rounded-lg text-xs font-mono text-slate-300">Java Swing</span>
+                            <span class="px-3 py-1.5 bg-slate-800 border border-slate-700 rounded-lg text-xs font-mono text-slate-300">Graphics2D</span>
+                            <span class="px-3 py-1.5 bg-slate-800 border border-slate-700 rounded-lg text-xs font-mono text-slate-300">Git / GitHub</span>
+                            <span class="px-3 py-1.5 bg-slate-800 border border-slate-700 rounded-lg text-xs font-mono text-slate-300">VS Code</span>
+                            <span class="px-3 py-1.5 bg-slate-800 border border-slate-700 rounded-lg text-xs font-mono text-slate-300">GCC / Clang</span>
+                            <span class="px-3 py-1.5 bg-slate-800 border border-slate-700 rounded-lg text-xs font-mono text-slate-300">Bash Scripting</span>
+                        </div>
+                        <div class="p-4 rounded-xl bg-slate-800/40 border border-slate-700/40 text-xs text-slate-400 leading-relaxed">
+                            <i class="fas fa-info-circle text-accentCyan mr-1"></i>
+                            Habitué au contrôle de version avec Git et aux environnements de développement sous Linux.
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION PROJETS -->
+        <section id="projects" class="py-20 border-t border-slate-800/60">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-white tracking-tight sm:text-4xl">Projets Réalisés</h2>
+                    <p class="text-slate-400 mt-2">Découvrez mes réalisations en jeux vidéo, administration et sécurité</p>
+                    <div class="w-16 h-1 bg-accentViolet mx-auto mt-2 rounded-full"></div>
+                </div>
+
+                <!-- Category Filters -->
+                <div class="flex justify-center items-center flex-wrap gap-2 mb-12">
+                    <button class="project-filter active px-4 py-2 rounded-xl text-sm font-medium transition-all bg-accentViolet text-white" data-filter="all">Tous</button>
+                    <button class="project-filter px-4 py-2 rounded-xl text-sm font-medium transition-all bg-slate-800 text-slate-300 hover:bg-slate-700" data-filter="gamedev">Jeux Vidéo (2D)</button>
+                    <button class="project-filter px-4 py-2 rounded-xl text-sm font-medium transition-all bg-slate-800 text-slate-300 hover:bg-slate-700" data-filter="cyber">Cybersécurité & Admin</button>
+                </div>
+
+                <!-- Projects Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                    <!-- Projet 1 : RPG C++ / SFML -->
+                    <div class="project-card glass-card rounded-2xl overflow-hidden transition-all duration-300 flex flex-col" data-category="gamedev">
+                        <div class="h-48 bg-slate-800 relative overflow-hidden flex items-center justify-center group">
+                            <!-- Visual Placeholder / SVG graphic for GameDev -->
+                            <div class="absolute inset-0 bg-gradient-to-br from-purple-900/40 to-slate-900 flex items-center justify-center">
+                                <i class="fas fa-gamepad text-6xl text-purple-400/30 group-hover:scale-110 transition-transform duration-300"></i>
+                            </div>
+                            <span class="absolute top-4 left-4 bg-accentViolet/90 text-white text-xs font-mono px-3 py-1 rounded-full">C++ / SFML 3</span>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-xl font-bold text-white mb-2">Jeu RPG 2D (C++ / SFML 3)</h3>
+                                <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                                    Développement d'un jeu de rôle 2D en C++. Mise en place d'un moteur personnalisé : gestion de Tilemaps pour les cartes, détection des collisions (AABB), animations de sprites et boucle de jeu optimisée.
+                                </p>
+                            </div>
+                            <div>
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span class="text-xs font-mono bg-slate-800 text-slate-300 px-2.5 py-1 rounded">C++17</span>
+                                    <span class="text-xs font-mono bg-slate-800 text-slate-300 px-2.5 py-1 rounded">SFML 3</span>
+                                    <span class="text-xs font-mono bg-slate-800 text-slate-300 px-2.5 py-1 rounded">Tilemap</span>
+                                    <span class="text-xs font-mono bg-slate-800 text-slate-300 px-2.5 py-1 rounded">Collision Box</span>
+                                </div>
+                                <a href="https://github.com/swagma23" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-sm text-accentCyan hover:underline font-medium">
+                                    Voir sur GitHub <i class="fas fa-external-link-alt ml-1.5 text-xs"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Projet 2 : Jeu Aventure Java -->
+                    <div class="project-card glass-card rounded-2xl overflow-hidden transition-all duration-300 flex flex-col" data-category="gamedev">
+                        <div class="h-48 bg-slate-800 relative overflow-hidden flex items-center justify-center group">
+                            <div class="absolute inset-0 bg-gradient-to-br from-amber-900/40 to-slate-900 flex items-center justify-center">
+                                <i class="fas fa-chess-board text-6xl text-amber-400/30 group-hover:scale-110 transition-transform duration-300"></i>
+                            </div>
+                            <span class="absolute top-4 left-4 bg-amber-600/90 text-white text-xs font-mono px-3 py-1 rounded-full">Java / Swing</span>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-xl font-bold text-white mb-2">Jeu d'Aventure 2D en Java</h3>
+                                <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                                    Conception d'un moteur 2D à partir de zéro avec Java Swing et Graphics2D. Intégration d'un système de caméra de suivi de personnage, gestion des collisions matricielles et boucle de rendu indépendante du framerate.
+                                </p>
+                            </div>
+                            <div>
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span class="text-xs font-mono bg-slate-800 text-slate-300 px-2.5 py-1 rounded">Java POO</span>
+                                    <span class="text-xs font-mono bg-slate-800 text-slate-300 px-2.5 py-1 rounded">Swing / Graphics2D</span>
+                                    <span class="text-xs font-mono bg-slate-800 text-slate-300 px-2.5 py-1 rounded">2D Engine</span>
+                                </div>
+                                <a href="https://github.com/swagma23" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-sm text-accentCyan hover:underline font-medium">
+                                    Voir sur GitHub <i class="fas fa-external-link-alt ml-1.5 text-xs"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Projet 3 : Serveur Mail Linux -->
+                    <div class="project-card glass-card rounded-2xl overflow-hidden transition-all duration-300 flex flex-col" data-category="cyber">
+                        <div class="h-48 bg-slate-800 relative overflow-hidden flex items-center justify-center group">
+                            <div class="absolute inset-0 bg-gradient-to-br from-blue-900/40 to-slate-900 flex items-center justify-center">
+                                <i class="fas fa-server text-6xl text-blue-400/30 group-hover:scale-110 transition-transform duration-300"></i>
+                            </div>
+                            <span class="absolute top-4 left-4 bg-accentBlue/90 text-white text-xs font-mono px-3 py-1 rounded-full">Linux / Réseau</span>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-xl font-bold text-white mb-2">Serveur Mail Local & Sécurisé</h3>
+                                <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                                    Installation et configuration complète d'un serveur de messagerie d'entreprise sous Ubuntu Linux. Intégration de Postfix (MTA), Dovecot (IMAP/POP3) et interface webmail Roundcube avec sécurisation TLS/SSL.
+                                </p>
+                            </div>
+                            <div>
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span class="text-xs font-mono bg-slate-800 text-slate-300 px-2.5 py-1 rounded">Ubuntu Server</span>
+                                    <span class="text-xs font-mono bg-slate-800 text-slate-300 px-2.5 py-1 rounded">Postfix</span>
+                                    <span class="text-xs font-mono bg-slate-800 text-slate-300 px-2.5 py-1 rounded">Dovecot</span>
+                                    <span class="text-xs font-mono bg-slate-800 text-slate-300 px-2.5 py-1 rounded">Roundcube</span>
+                                </div>
+                                <a href="https://github.com/swagma23" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-sm text-accentCyan hover:underline font-medium">
+                                    Voir sur GitHub <i class="fas fa-external-link-alt ml-1.5 text-xs"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Projet 4 : CTF & Lab Cybersécurité -->
+                    <div class="project-card glass-card rounded-2xl overflow-hidden transition-all duration-300 flex flex-col" data-category="cyber">
+                        <div class="h-48 bg-slate-800 relative overflow-hidden flex items-center justify-center group">
+                            <div class="absolute inset-0 bg-gradient-to-br from-emerald-900/40 to-slate-900 flex items-center justify-center">
+                                <i class="fas fa-terminal text-6xl text-emerald-400/30 group-hover:scale-110 transition-transform duration-300"></i>
+                            </div>
+                            <span class="absolute top-4 left-4 bg-emerald-600/90 text-white text-xs font-mono px-3 py-1 rounded-full">Cybersécurité</span>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-xl font-bold text-white mb-2">Défis CTF & Lab Pentesting</h3>
+                                <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                                    Résolution de challenges de sécurité informatique (Capture The Flag). Exploitation de vulnérabilités Web (SQLi, XSS), analyse de trafic réseau via Wireshark, scan d'infrastructures avec Nmap et initiation aux Buffer Overflows.
+                                </p>
+                            </div>
+                            <div>
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span class="text-xs font-mono bg-slate-800 text-slate-300 px-2.5 py-1 rounded">Pentest</span>
+                                    <span class="text-xs font-mono bg-slate-800 text-slate-300 px-2.5 py-1 rounded">Nmap / Wireshark</span>
+                                    <span class="text-xs font-mono bg-slate-800 text-slate-300 px-2.5 py-1 rounded">Burp Suite</span>
+                                    <span class="text-xs font-mono bg-slate-800 text-slate-300 px-2.5 py-1 rounded">SQLi / Buffer Overflow</span>
+                                </div>
+                                <a href="https://github.com/swagma23" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-sm text-accentCyan hover:underline font-medium">
+                                    Voir sur GitHub <i class="fas fa-external-link-alt ml-1.5 text-xs"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION CONTACT -->
+        <section id="contact" class="py-20 bg-slate-900/50 border-t border-slate-800/60">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-white tracking-tight sm:text-4xl">Me Contacter</h2>
+                    <p class="text-slate-400 mt-2">Un projet, une question ou une opportunité ? N'hésitez pas à me laisser un message.</p>
+                    <div class="w-16 h-1 bg-accentCyan mx-auto mt-2 rounded-full"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+                    <!-- Quick Info -->
+                    <div class="md:col-span-5 space-y-6">
+                        <div class="glass-card p-6 rounded-2xl">
+                            <h3 class="text-lg font-bold text-white mb-4">Mes Coordonnées</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-start space-x-3">
+                                    <div class="w-10 h-10 rounded-lg bg-accentCyan/10 text-accentCyan flex items-center justify-center shrink-0">
+                                        <i class="fas fa-envelope"></i>
+                                    </div>
+                                    <div>
+                                        <div class="text-xs text-slate-400">Email</div>
+                                        <a href="mailto:contact@xavierpignan.dev" class="text-sm font-medium text-slate-200 hover:text-accentCyan transition-colors">Contactez-moi par Email</a>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <div class="w-10 h-10 rounded-lg bg-accentViolet/10 text-accentViolet flex items-center justify-center shrink-0">
+                                        <i class="fab fa-github"></i>
+                                    </div>
+                                    <div>
+                                        <div class="text-xs text-slate-400">GitHub</div>
+                                        <a href="https://github.com/swagma23" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-slate-200 hover:text-accentViolet transition-colors">github.com/swagma23</a>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <div class="w-10 h-10 rounded-lg bg-accentBlue/10 text-accentBlue flex items-center justify-center shrink-0">
+                                        <i class="fas fa-graduation-cap"></i>
+                                    </div>
+                                    <div>
+                                        <div class="text-xs text-slate-400">Formation</div>
+                                        <div class="text-sm font-medium text-slate-200">Informatique & Mathématiques Appliquées</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <div class="md:col-span-7">
+                        <form id="contact-form" class="glass-card p-6 rounded-2xl space-y-4">
+                            <div>
+                                <label for="name" class="block text-xs font-mono text-slate-300 mb-1">Nom complet</label>
+                                <input type="text" id="name" required placeholder="Votre nom" class="w-full px-4 py-2.5 rounded-xl bg-slate-800/80 border border-slate-700 text-slate-100 placeholder-slate-500 focus:outline-none focus:border-accentCyan transition-colors">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-xs font-mono text-slate-300 mb-1">Adresse Email</label>
+                                <input type="email" id="email" required placeholder="nom@exemple.com" class="w-full px-4 py-2.5 rounded-xl bg-slate-800/80 border border-slate-700 text-slate-100 placeholder-slate-500 focus:outline-none focus:border-accentCyan transition-colors">
+                            </div>
+                            <div>
+                                <label for="message" class="block text-xs font-mono text-slate-300 mb-1">Message</label>
+                                <textarea id="message" rows="4" required placeholder="Votre message..." class="w-full px-4 py-2.5 rounded-xl bg-slate-800/80 border border-slate-700 text-slate-100 placeholder-slate-500 focus:outline-none focus:border-accentCyan transition-colors resize-none"></textarea>
+                            </div>
+                            <button type="submit" id="submit-btn" class="w-full py-3 rounded-xl bg-gradient-to-r from-accentBlue to-accentViolet text-white font-semibold hover:opacity-90 transition-opacity flex items-center justify-center space-x-2">
+                                <span>Envoyer le message</span>
+                                <i class="fas fa-paper-plane text-sm"></i>
+                            </button>
+                            <div id="form-feedback" class="hidden p-3 rounded-xl text-xs text-center font-mono"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-cardBg border-t border-slate-800 py-8 text-center text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto px-4">
+            <p>© 2026 Prewa Xavier Pignan. Tous droits réservés.</p>
+            <p class="mt-2 font-mono">Développé avec passion pour le code, les maths et la sécurité.</p>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            if (mobileMenu.classList.contains('hidden')) {
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
+            } else {
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-times');
+            }
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
+            });
+        });
+
+        // Project Filtering System
+        const filterBtns = document.querySelectorAll('.project-filter');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all
+                filterBtns.forEach(b => {
+                    b.classList.remove('active', 'bg-accentViolet', 'text-white');
+                    b.classList.add('bg-slate-800', 'text-slate-300');
+                });
+                
+                // Add active class to clicked
+                btn.classList.add('active', 'bg-accentViolet', 'text-white');
+                btn.classList.remove('bg-slate-800', 'text-slate-300');
+
+                const filter = btn.getAttribute('data-filter');
+
+                projectCards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Interactive Contact Form Handling
+        const contactForm = document.getElementById('contact-form');
+        const formFeedback = document.getElementById('form-feedback');
+        const submitBtn = document.getElementById('submit-btn');
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Disable button during simulation
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i><span>Envoi en cours...</span>`;
+
+            setTimeout(() => {
+                // Show success feedback
+                formFeedback.classList.remove('hidden', 'bg-red-500/10', 'text-red-400', 'border-red-500/20');
+                formFeedback.classList.add('bg-emerald-500/10', 'text-emerald-400', 'border', 'border-emerald-500/20');
+                formFeedback.innerHTML = `<i class="fas fa-check-circle mr-1"></i> Merci Xavier ! Votre message a été envoyé avec succès.`;
+                
+                // Reset form
+                contactForm.reset();
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = `<span>Envoyer le message</span><i class="fas fa-paper-plane text-sm"></i>`;
+
+                // Clear message after 5 seconds
+                setTimeout(() => {
+                    formFeedback.classList.add('hidden');
+                }, 5000);
+            }, 1200);
+        });
+    </script>
+</body>
+</html>
